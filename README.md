@@ -1,12 +1,12 @@
-# Culturestake Subgraph
+# CultureStake Subgraph
 
-Culturestake subgraph for [The Graph](https://thegraph.com/) to fastly query available data in the Culturestake ecosystem.
+[CultureStake](https://github.com/lazaruslabs/culturestake) subgraph for [The Graph](https://thegraph.com/) to fastly query available data in the CultureStake ecosystem.
 
-CultureStake is a web-based voting system for cultural decision making and investment.
+CultureStake is a web-based voting and connection system for decentralised cultural decision making and investment.
 
 ## Credits
 
-CultureStake is a [Furtherfield](https://www.furtherfield.org/)/[DECAL](http://www.decal.is/) initiative.
+CultureStake is a [Furtherfield](https://www.furtherfield.org/) / [DECAL](http://www.decal.is/) initiative.
 
 ## Development
 
