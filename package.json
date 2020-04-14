@@ -24,5 +24,8 @@
     "@graphprotocol/graph-cli": "^0.16.2",
     "@graphprotocol/graph-ts": "^0.16.0",
     "truffle": "^5.1.0"
+  },
+  "dependencies": {
+    "culturestake-contracts": "^1.0.10"
   }
 }
