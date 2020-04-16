@@ -1,0 +1,44 @@
+type Question @entity {
+  id: ID!
+  answers: [Answer]!
+  type: BigInt!
+}
+
+type Answer @entity {
+  id: ID!
+  voteTokens: BigInt!
+  votes: BigInt!
+  votePower: BigInt!
+  active: Boolean!
+}
+
+type Festival @entity {
+  id: ID!
+  questions: [Question]!
+  active: Boolean!
+  startTime: BigInt!
+  duration: BigInt!
+  votingBooths: [VotingBooth]!
+}
+
+type VotingBooth @entity {
+  id: ID!
+  active: Boolean!
+}
+
+type Vote @entity {
+  id: ID!
+  votePower: BigInt!
+  voteTokens: BigInt!
+  answer: Answer
+}
+
+type Culturestake @entity {
+  id: ID!
+  owners: [Admin]!
+  festivals: [Festival]!
+}
+
+type Admin @entity {
+  id: ID!
+}
