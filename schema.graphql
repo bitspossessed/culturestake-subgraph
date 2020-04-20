@@ -1,7 +1,9 @@
 type Question @entity {
   id: ID!
+  active: Boolean
+  festival: Festival!
   answers: [Answer]!
-  type: BigInt!
+  questionType: BigInt!
 }
 
 type Answer @entity {
@@ -10,6 +12,7 @@ type Answer @entity {
   votes: BigInt!
   votePower: BigInt!
   active: Boolean!
+  question: Question
 }
 
 type Festival @entity {
@@ -24,13 +27,16 @@ type Festival @entity {
 type VotingBooth @entity {
   id: ID!
   active: Boolean!
+  festival: Festival!
 }
 
 type Vote @entity {
   id: ID!
+  count: BigInt!
   votePower: BigInt!
   voteTokens: BigInt!
-  answer: Answer
+  answer: Answer!
+  booth: VotingBooth!
 }
 
 type Culturestake @entity {

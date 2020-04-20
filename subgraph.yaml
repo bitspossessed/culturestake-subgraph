@@ -57,6 +57,6 @@ templates:
           handler: handleInitAnswer
         - event: DeactivateAnswer(indexed bytes32)
           handler: handleDeactivateAnswer
-        - event: Vote(indexed bytes32,uint256,uint256,uint256,address)
+        - event: Vote(indexed bytes32,uint256,uint256,uint256,address,uint256)
           handler: handleVote
 
