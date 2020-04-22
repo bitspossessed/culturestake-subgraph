@@ -28,7 +28,7 @@ export function createVoteID(booth: Address, nonce: BigInt): string {
 export function handleVote(event: VoteEvent): void {
   let vote = new Vote(createVoteID(event.params.booth, event.params.nonce))
   vote.booth = event.params.booth.toHexString()
-  vote.answer = event.params.answer.toString()
+  vote.answer = event.params.answer.toHexString()
   vote.voteTokens = event.params.voteTokens
   vote.votePower = event.params.votePower
   vote.count = event.params.votes
@@ -36,7 +36,7 @@ export function handleVote(event: VoteEvent): void {
 
   let questionContract = QuestionContract.bind(event.address)
 
-  let answer = Answer.load(event.params.answer.toString())
+  let answer = Answer.load(event.params.answer.toHexString())
   let a = questionContract.getAnswer(event.params.answer)
   answer.voteTokens = a.value2
   answer.votePower = a.value1
@@ -45,7 +45,7 @@ export function handleVote(event: VoteEvent): void {
 }
 
 export function handleInitAnswer(event: InitAnswerEvent): void {
-  let answer = new Answer(event.params.answer.toString())
+  let answer = new Answer(event.params.answer.toHexString())
   answer.voteTokens = new BigInt(0)
   answer.votePower = new BigInt(0)
   answer.votes = new BigInt(0)
@@ -55,7 +55,7 @@ export function handleInitAnswer(event: InitAnswerEvent): void {
 }
 
 export function handleDeactivateAnswer(event: DeactivateAnswerEvent): void {
-  let answer = Answer.load(event.params.answer.toString())
+  let answer = Answer.load(event.params.answer.toHexString())
   answer.active = false
   answer.save()
 }

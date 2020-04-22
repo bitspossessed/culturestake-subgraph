@@ -28,17 +28,13 @@ export function handleInitQuestion(event: InitQuestionEvent): void {
 
   let question = new Question(event.params.questionAddress.toHexString())
   question.questionType = new BigInt(event.params.questionType)
-  question.festival = event.params.festival.toString()
+  question.festival = event.params.festival.toHexString()
   question.active = true
   question.save()
-
-  let fest = Festival.load(event.params.festival.toString())
-  fest.questions.push(event.params.questionAddress.toHexString())
-  fest.save()
 }
 
 export function handleInitFestival(event: InitFestivalEvent): void {
-  let festival = new Festival(event.params.festival.toString())
+  let festival = new Festival(event.params.festival.toHexString())
   festival.active = true
   festival.startTime = event.params.startTime
   festival.duration = event.params.duration
@@ -48,12 +44,8 @@ export function handleInitFestival(event: InitFestivalEvent): void {
 export function handleInitVotingBooth(event: InitVotingBoothEvent): void {
   let booth = new VotingBooth(event.params.boothAddress.toHexString())
   booth.active = true
-  booth.festival = event.params.festival.toString()
+  booth.festival = event.params.festival.toHexString()
   booth.save()
-
-  let fest = Festival.load(event.params.festival.toString())
-  fest.votingBooths.push(event.params.boothAddress.toHexString())
-  fest.save()
 }
 
 export function handleDeactivateQuestion(event: DeactivateQuestionEvent): void { 
@@ -63,7 +55,7 @@ export function handleDeactivateQuestion(event: DeactivateQuestionEvent): void {
 }
 
 export function handleDeactivateFestival(event: DeactivateFestivalEvent): void {
-  let fest = Festival.load(event.params.festival.toString())
+  let fest = Festival.load(event.params.festival.toHexString())
   fest.active = false
   fest.save()
 }

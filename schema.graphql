@@ -2,7 +2,7 @@ type Question @entity {
   id: ID!
   active: Boolean
   festival: Festival!
-  answers: [Answer]!
+  answers: [Answer]! @derivedFrom(field: "question")
   questionType: BigInt!
 }
 
@@ -17,11 +17,11 @@ type Answer @entity {
 
 type Festival @entity {
   id: ID!
-  questions: [Question]!
+  questions: [Question]! @derivedFrom(field: "festival")
   active: Boolean!
   startTime: BigInt!
   duration: BigInt!
-  votingBooths: [VotingBooth]!
+  votingBooths: [VotingBooth]! @derivedFrom(field: "festival")
 }
 
 type VotingBooth @entity {
