@@ -1,0 +1,50 @@
+type Question @entity {
+  id: ID!
+  active: Boolean
+  festival: Festival!
+  answers: [Answer]! @derivedFrom(field: "question")
+  questionType: BigInt!
+}
+
+type Answer @entity {
+  id: ID!
+  voteTokens: BigInt!
+  votes: BigInt!
+  votePower: BigInt!
+  active: Boolean!
+  question: Question
+}
+
+type Festival @entity {
+  id: ID!
+  questions: [Question]! @derivedFrom(field: "festival")
+  active: Boolean!
+  startTime: BigInt!
+  duration: BigInt!
+  votingBooths: [VotingBooth]! @derivedFrom(field: "festival")
+}
+
+type VotingBooth @entity {
+  id: ID!
+  active: Boolean!
+  festival: Festival!
+}
+
+type Vote @entity {
+  id: ID!
+  count: BigInt!
+  votePower: BigInt!
+  voteTokens: BigInt!
+  answer: Answer!
+  booth: VotingBooth!
+}
+
+type Culturestake @entity {
+  id: ID!
+  owners: [Admin]!
+  festivals: [Festival]!
+}
+
+type Admin @entity {
+  id: ID!
+}
