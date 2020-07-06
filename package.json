@@ -26,6 +26,6 @@
     "truffle": "^5.1.0"
   },
   "dependencies": {
-    "culturestake-contracts": "^1.0.15"
+    "culturestake-contracts": "^1.0.17"
   }
 }

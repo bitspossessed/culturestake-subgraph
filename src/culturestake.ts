@@ -27,41 +27,40 @@ export function handleInitQuestion(event: InitQuestionEvent): void {
   QuestionContract.create(event.params.questionAddress)
 
   let question = new Question(event.params.questionAddress.toHexString())
-  question.questionType = new BigInt(event.params.questionType)
   question.festival = event.params.festival.toHexString()
-  question.active = true
+  question.inited = true
   question.save()
 }
 
 export function handleInitFestival(event: InitFestivalEvent): void {
   let festival = new Festival(event.params.festival.toHexString())
-  festival.active = true
+  festival.inited = true
   festival.startTime = event.params.startTime
-  festival.duration = event.params.duration
+  festival.endTime = event.params.endTime
   festival.save()
 }
 
 export function handleInitVotingBooth(event: InitVotingBoothEvent): void {
   let booth = new VotingBooth(event.params.boothAddress.toHexString())
-  booth.active = true
+  booth.inited = true
   booth.festival = event.params.festival.toHexString()
   booth.save()
 }
 
 export function handleDeactivateQuestion(event: DeactivateQuestionEvent): void { 
   let question = Question.load(event.params.questionAddress.toHexString())
-  question.active = false
+  question.deactivated = true
   question.save()
 }
 
 export function handleDeactivateFestival(event: DeactivateFestivalEvent): void {
   let fest = Festival.load(event.params.festival.toHexString())
-  fest.active = false
+  fest.deactivated = true
   fest.save()
 }
 
 export function handleDeactivateVotingBooth(event: DeactivateVotingBoothEvent): void {
   let booth = VotingBooth.load(event.params.boothAddress.toHexString())
-  booth.active = false
+  booth.deactivated = true
   booth.save()
 }
