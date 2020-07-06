@@ -43,12 +43,6 @@ type Vote @entity {
   booth: VotingBooth!
 }
 
-type Culturestake @entity {
-  id: ID!
-  owners: [Admin]!
-  festivals: [Festival]!
-}
-
 type Admin @entity {
   id: ID!
 }

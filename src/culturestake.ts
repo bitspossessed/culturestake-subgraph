@@ -1,22 +1,29 @@
- import {
+import {
+  store,
+} from '@graphprotocol/graph-ts'
+
+import {
   Address,
   BigInt,
   store,
 } from '@graphprotocol/graph-ts'
 
- import {
+import {
   InitQuestion as InitQuestionEvent,
   InitFestival as InitFestivalEvent,
   InitVotingBooth as InitVotingBoothEvent,
   DeactivateQuestion as DeactivateQuestionEvent,
   DeactivateFestival as DeactivateFestivalEvent,
   DeactivateVotingBooth as DeactivateVotingBoothEvent,
+  AddedOwner as AddedOwnerEvent,
+  RemovedOwner as RemovedOwnerEvent,
 } from './types/Culturestake/Culturestake'
 
 import {
   Question,
   Festival,
   VotingBooth,
+  Admin,
 } from './types/schema'
 
 import {
@@ -64,3 +71,14 @@ export function handleDeactivateVotingBooth(event: DeactivateVotingBoothEvent): 
   booth.deactivated = true
   booth.save()
 }
+
+export function handleAddedOwner(event: AddedOwnerEvent): void {
+  let admin = new Admin(event.params.owner.toHexString())
+  admin.save()
+}
+
+export function handleRemovedOwner(event: RemovedOwnerEvent): void {
+  store.remove('Admin', event.params.owner.toHex())
+}
+
+

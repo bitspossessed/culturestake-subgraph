@@ -35,6 +35,10 @@ dataSources:
           handler: handleDeactivateFestival
         - event: DeactivateVotingBooth(indexed address)
           handler: handleDeactivateVotingBooth
+        - event: AddedOwner(address)
+          handler: handleAddedOwner
+        - event: RemovedOwner(address)
+          handler: handleRemovedOwner
 templates:
   - name: Question
     kind: ethereum/contract
