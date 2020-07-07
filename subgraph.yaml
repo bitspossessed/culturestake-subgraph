@@ -23,7 +23,7 @@ dataSources:
         - name: Culturestake
           file: ./node_modules/culturestake-contracts/build/contracts/Culturestake.json
       eventHandlers:
-        - event: InitQuestion(indexed bytes32,indexed address,uint8,bytes32)
+        - event: InitQuestion(indexed bytes32,indexed address)
           handler: handleInitQuestion
         - event: InitFestival(indexed bytes32,uint256,uint256)
           handler: handleInitFestival
@@ -35,6 +35,10 @@ dataSources:
           handler: handleDeactivateFestival
         - event: DeactivateVotingBooth(indexed address)
           handler: handleDeactivateVotingBooth
+        - event: AddedOwner(address)
+          handler: handleAddedOwner
+        - event: RemovedOwner(address)
+          handler: handleRemovedOwner
 templates:
   - name: Question
     kind: ethereum/contract

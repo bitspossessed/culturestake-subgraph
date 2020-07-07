@@ -34,10 +34,10 @@ export function handleVote(event: VoteEvent): void {
   vote.count = event.params.votes
   vote.save()
 
-  let questionContract = QuestionContract.bind(event.address)
+  let questioncontract = QuestionContract.bind(event.address)
 
   let answer = Answer.load(event.params.answer.toHexString())
-  let a = questionContract.getAnswer(event.params.answer)
+  let a = questioncontract.getAnswer(event.params.answer)
   answer.voteTokens = a.value2
   answer.votePower = a.value1
   answer.votes = a.value3
@@ -49,13 +49,13 @@ export function handleInitAnswer(event: InitAnswerEvent): void {
   answer.voteTokens = new BigInt(0)
   answer.votePower = new BigInt(0)
   answer.votes = new BigInt(0)
-  answer.active = true
+  answer.inited = true
   answer.question = event.address.toHexString()
   answer.save()
 }
 
 export function handleDeactivateAnswer(event: DeactivateAnswerEvent): void {
   let answer = Answer.load(event.params.answer.toHexString())
-  answer.active = false
+  answer.deactivated = true
   answer.save()
 }
