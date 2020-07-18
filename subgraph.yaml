@@ -23,13 +23,13 @@ dataSources:
         - name: Culturestake
           file: ./node_modules/culturestake-contracts/build/contracts/Culturestake.json
       eventHandlers:
-        - event: InitQuestion(indexed bytes32,indexed address)
+        - event: InitQuestion(indexed bytes32,indexed bytes32,indexed address)
           handler: handleInitQuestion
         - event: InitFestival(indexed bytes32,uint256,uint256)
           handler: handleInitFestival
         - event: InitVotingBooth(indexed bytes32,indexed address)
           handler: handleInitVotingBooth
-        - event: DeactivateQuestion(indexed address)
+        - event: DeactivateQuestion(indexed bytes32)
           handler: handleDeactivateQuestion
         - event: DeactivateFestival(indexed bytes32)
           handler: handleDeactivateFestival
@@ -57,10 +57,10 @@ templates:
         - name: Question
           file: ./node_modules/culturestake-contracts/build/contracts/Question.json
       eventHandlers:
-        - event: InitAnswer(indexed bytes32)
+        - event: InitAnswer(bytes32,indexed bytes32)
           handler: handleInitAnswer
-        - event: DeactivateAnswer(indexed bytes32)
+        - event: DeactivateAnswer(bytes32,indexed bytes32)
           handler: handleDeactivateAnswer
-        - event: Vote(indexed bytes32,uint256,uint256,uint256,address,uint256)
+        - event: Vote(bytes32,indexed bytes32,uint256,uint256,uint256,address,uint256)
           handler: handleVote
 
