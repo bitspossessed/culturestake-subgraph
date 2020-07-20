@@ -31,9 +31,8 @@ import {
 } from './types/templates'
 
 export function handleInitQuestion(event: InitQuestionEvent): void {
-  QuestionContract.create(event.params.questionAddress)
-
-  let question = new Question(event.params.questionAddress.toHexString())
+  let question = new Question(event.params.question.toHexString())
+  question.address = event.params.questionAddress.toHexString()
   question.festival = event.params.festival.toHexString()
   question.inited = true
   question.save()
@@ -55,7 +54,7 @@ export function handleInitVotingBooth(event: InitVotingBoothEvent): void {
 }
 
 export function handleDeactivateQuestion(event: DeactivateQuestionEvent): void { 
-  let question = Question.load(event.params.questionAddress.toHexString())
+  let question = Question.load(event.params.question.toHexString())
   question.deactivated = true
   question.save()
 }

@@ -1,5 +1,6 @@
 type Question @entity {
   id: ID!
+  address: String!
   inited: Boolean!
   deactivated: Boolean
   festival: Festival!
