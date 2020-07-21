@@ -50,7 +50,7 @@ export function handleInitAnswer(event: InitAnswerEvent): void {
   answer.votePower = new BigInt(0)
   answer.votes = new BigInt(0)
   answer.inited = true
-  answer.question = event.address.toHexString()
+  answer.question = event.params.questionId.toHexString()
   answer.save()
 }
 

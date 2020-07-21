@@ -5,7 +5,6 @@ type Question @entity {
   deactivated: Boolean
   festival: Festival!
   answers: [Answer]! @derivedFrom(field: "question")
-  questionType: BigInt!
 }
 
 type Answer @entity {

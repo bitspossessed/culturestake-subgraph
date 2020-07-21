@@ -31,6 +31,8 @@ import {
 } from './types/templates'
 
 export function handleInitQuestion(event: InitQuestionEvent): void {
+  QuestionContract.create(event.params.questionAddress)
+  
   let question = new Question(event.params.question.toHexString())
   question.address = event.params.questionAddress.toHexString()
   question.festival = event.params.festival.toHexString()
