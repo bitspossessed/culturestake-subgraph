@@ -38,9 +38,9 @@ export function handleVote(event: VoteEvent): void {
 
   let answer = Answer.load(event.params.answer.toHexString())
   let a = questioncontract.getAnswer(event.params.answer)
-  answer.voteTokens = a.value2
-  answer.votePower = a.value1
-  answer.votes = a.value3
+  answer.voteTokens = a.value3
+  answer.votePower = a.value2
+  answer.votes = a.value4
   answer.save()
 }
 
