@@ -1,0 +1,66 @@
+specVersion: 0.0.3
+description: Culturestake subgraph
+repository: https://github.com/lazaruslabs/culturestake
+schema:
+  file: ./schema.graphql
+dataSources:
+  - name: Culturestake
+    kind: ethereum/contract
+    network: ${SUBGRAPH_NETWORK}
+    source:
+      address: "${CULTURESTAKE_ADDRESS}"
+      abi: Culturestake
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/culturestake.ts
+      entities:
+        - Festival
+        - Question
+        - VotingBooth
+      abis:
+        - name: Culturestake
+          file: ./node_modules/culturestake-contracts/build/contracts/Culturestake.json
+      eventHandlers:
+        - event: InitQuestion(indexed bytes32,indexed bytes32,indexed address)
+          handler: handleInitQuestion
+        - event: InitFestival(indexed bytes32,uint256,uint256)
+          handler: handleInitFestival
+        - event: InitVotingBooth(indexed bytes32,indexed address)
+          handler: handleInitVotingBooth
+        - event: DeactivateQuestion(indexed bytes32)
+          handler: handleDeactivateQuestion
+        - event: DeactivateFestival(indexed bytes32)
+          handler: handleDeactivateFestival
+        - event: DeactivateVotingBooth(indexed address)
+          handler: handleDeactivateVotingBooth
+        - event: AddedOwner(address)
+          handler: handleAddedOwner
+        - event: RemovedOwner(address)
+          handler: handleRemovedOwner
+templates:
+  - name: Question
+    kind: ethereum/contract
+    network: ${SUBGRAPH_NETWORK}
+    source:
+      abi: Question
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: ./src/question.ts
+      entities:
+        - Answer
+        - Vote
+      abis:
+        - name: Question
+          file: ./node_modules/culturestake-contracts/build/contracts/Question.json
+      eventHandlers:
+        - event: InitAnswer(bytes32,indexed bytes32)
+          handler: handleInitAnswer
+        - event: DeactivateAnswer(bytes32,indexed bytes32)
+          handler: handleDeactivateAnswer
+        - event: Vote(bytes32,indexed bytes32,uint256,uint256,uint256,address,uint256)
+          handler: handleVote
+

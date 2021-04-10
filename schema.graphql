@@ -1,0 +1,48 @@
+type Question @entity {
+  id: ID!
+  address: String!
+  inited: Boolean!
+  deactivated: Boolean
+  festival: Festival!
+  answers: [Answer]! @derivedFrom(field: "question")
+}
+
+type Answer @entity {
+  id: ID!
+  voteTokens: BigInt!
+  votes: BigInt!
+  votePower: BigInt!
+  inited: Boolean!
+  deactivated: Boolean
+  question: Question
+}
+
+type Festival @entity {
+  id: ID!
+  questions: [Question]! @derivedFrom(field: "festival")
+  inited: Boolean!
+  deactivated: Boolean
+  startTime: BigInt!
+  endTime: BigInt!
+  votingBooths: [VotingBooth]! @derivedFrom(field: "festival")
+}
+
+type VotingBooth @entity {
+  id: ID!
+  inited: Boolean!
+  deactivated: Boolean
+  festival: Festival!
+}
+
+type Vote @entity {
+  id: ID!
+  count: BigInt!
+  votePower: BigInt!
+  voteTokens: BigInt!
+  answer: Answer!
+  booth: VotingBooth!
+}
+
+type Admin @entity {
+  id: ID!
+}
